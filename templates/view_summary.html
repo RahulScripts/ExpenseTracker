@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Summary by Category</h2>
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Total Amount</th>
+    </tr>
+    {% if summary %}
+        {% for row in summary %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>₹{{ "%.2f"|format(row[1]) }}</td>  <!-- Correctly formats the amount -->
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="2">No data available</td>
+        </tr>
+    {% endif %}
+</table>
+<a href="/">Back to Home</a>  <!-- Link to go back to the main page -->
+{% endblock %}

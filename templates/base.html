@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body align="center">
+    <nav>
+        <h1 >Welcome to your Personal Expense Tracker</h1>
+        <a href="/">Home</a> | 
+        <a href="/add">Add Expense</a> | 
+        <a href="/summary">View Summary</a> | 
+        <a href="/delete">Delete Entry</a>
+    </nav>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" width="380" height="400" class="logo"> <!-- Add your image here -->
+        <figcaption><B>TRACK YOUR EXPENSES</B></figcaption>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}   
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
